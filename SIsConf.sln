@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIsConf", "SIsConf\SIsConf.csproj", "{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisConf", "SIsConf\SisConf.csproj", "{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SisConfTestes", "SisConfTestes\SisConfTestes.csproj", "{37B2B1C6-8D55-418D-9031-2D8679504613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37B2B1C6-8D55-418D-9031-2D8679504613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37B2B1C6-8D55-418D-9031-2D8679504613}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37B2B1C6-8D55-418D-9031-2D8679504613}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37B2B1C6-8D55-418D-9031-2D8679504613}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

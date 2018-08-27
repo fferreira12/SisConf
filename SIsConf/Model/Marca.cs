@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SIsConf
+namespace SisConf.Model
 {
-    public class Class1
+    public class Marca
     {
+
+        public string Nome { get; set; }
+
     }
 }
