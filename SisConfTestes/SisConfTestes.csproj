@@ -49,14 +49,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\TestInsumo.cs" />
-    <Compile Include="TestesDeEstoque.cs" />
-    <Compile Include="TestesDeProduto.cs" />
-    <Compile Include="TestesDeCriacao.cs" />
+    <Compile Include="Funcionalidade\TestFuncionalidade.cs" />
+    <Compile Include="Model\TestesDeInsumo.cs" />
+    <Compile Include="Model\TestesDeEstoque.cs" />
+    <Compile Include="Model\TestesDeProduto.cs" />
+    <Compile Include="Model\TestesDeCriacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SIsConf\SisConf.csproj">
