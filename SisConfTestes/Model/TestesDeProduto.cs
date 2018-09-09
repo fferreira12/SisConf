@@ -89,7 +89,7 @@ namespace SisConfTestes.Model
 
             double margem = 0.3;
             double precoEsperado = p1.CalcularCustoDoProduto(e) / (1 - margem);
-            Assert.AreEqual(precoEsperado, p1.ObterPrecoDeVenda(margem));
+            Assert.AreEqual(precoEsperado, p1.ObterPrecoDeVendaPelaMargemDeLucro(margem));
         }
         
     }
