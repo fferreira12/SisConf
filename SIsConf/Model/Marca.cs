@@ -10,6 +10,28 @@ namespace SisConf.Model
     {
 
         public string Nome { get; set; }
+        private List<Insumo> insumos = null;
+
+        public Marca(string nomeDaMarca = null)
+        {
+            Nome = nomeDaMarca;
+            insumos = new List<Insumo>();
+        }
+
+        public void IncluirInsumo(Insumo insumo)
+        {
+            insumos.Add(insumo);
+        }
+
+        public void RemoverInsumo(Insumo insumo)
+        {
+            insumos.Remove(insumo);
+        }
+
+        public List<Insumo> ObterInsumos()
+        {
+            return insumos;
+        }
 
     }
 }
