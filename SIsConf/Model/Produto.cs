@@ -14,8 +14,9 @@ namespace SisConf.Model
         private Dictionary<Insumo, double> insumos = null;
         private Estoque Estoque = null;
 
-        public Produto()
+        public Produto(string nome = null)
         {
+            Nome = nome;
             insumos = new Dictionary<Insumo, double>();
         }
 
@@ -48,9 +49,14 @@ namespace SisConf.Model
             return valorTotal;
         }
 
-        public double ObterPrecoDeVenda(double margemDeLucro)
+        public double ObterPrecoDeVendaPelaMargemDeLucro(double margemDeLucro)
         {
             return CalcularCustoDoProduto() / (1.0 - margemDeLucro);
+        }
+
+        public double ObterPrecoDeVendaPeloLucroAbsoluto(double lucroDesejado)
+        {
+            return CalcularCustoDoProduto() + lucroDesejado;
         }
 
     }
