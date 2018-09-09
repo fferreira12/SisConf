@@ -12,6 +12,7 @@ namespace SisConf.Model
         public string Nome { get; set; }
         public string Descricao { get; set; }
         private Dictionary<Insumo, double> insumos = null;
+        private Estoque Estoque = null;
 
         public Produto()
         {
@@ -23,9 +24,33 @@ namespace SisConf.Model
             insumos.Add(insumo, quantidade);
         }
 
-        public Dictionary<Insumo, double> GetInsumos()
+        public Dictionary<Insumo, double> ObterInsumos()
         {
-            return insumos;
+            return new Dictionary<Insumo, double>(insumos);
+        }
+
+        public double CalcularCustoDoProduto(Estoque estoque = null)
+        {
+            if(estoque == null && Estoque == null)
+            {
+                return 0;
+            }
+            else if (Estoque == null || (estoque != null && Estoque != estoque))
+            {
+                Estoque = estoque;
+            }
+
+            double valorTotal = 0;
+            foreach (var insumo in insumos)
+            {
+                valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);
+            }
+            return valorTotal;
+        }
+
+        public double ObterPrecoDeVenda(double margemDeLucro)
+        {
+            return CalcularCustoDoProduto() / (1.0 - margemDeLucro);
         }
 
     }
