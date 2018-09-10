@@ -8,11 +8,11 @@ namespace SisConf.Model
 {
     public class UnidadeMedida
     {
-
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Sigla { get; set; }
-        public double FatorConversãoSI { get; set; }
-        public TipoUnidadeMedida TipoUnidade { get; set; }
+        public double FatorConversaoSI { get; set; }
+        public virtual TipoUnidadeMedida TipoUnidade { get; set; }
 
 
     }

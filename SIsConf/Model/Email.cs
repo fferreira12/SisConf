@@ -8,7 +8,7 @@ namespace SisConf.Model
 {
     public class Email
     {
-
+        public int Id { get; set; }
         public string NomeDeUsuario { get; set; }
         public string Provedor { get; set; }
 

@@ -14,7 +14,7 @@ namespace SisConfTestes.Model
             UnidadeMedida unidade = new UnidadeMedida()
             {
                 Nome = "quilograma",
-                FatorConversãoSI = 1000,
+                FatorConversaoSI = 1000,
                 TipoUnidade = TipoUnidadeMedida.MASSA
             };
         }
@@ -30,7 +30,7 @@ namespace SisConfTestes.Model
                 Unidade = new UnidadeMedida()
                 {
                     Nome = "quilograma",
-                    FatorConversãoSI = 1000,
+                    FatorConversaoSI = 1000,
                     TipoUnidade = TipoUnidadeMedida.MASSA
                 }
                 

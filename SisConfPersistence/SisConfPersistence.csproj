@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B5CEAD2-053C-4F46-85D1-FB6396DBFEEB}</ProjectGuid>
+    <ProjectGuid>{154BCF63-562E-4011-97BD-30E56A010634}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SisConf</RootNamespace>
-    <AssemblyName>SisConf</AssemblyName>
+    <RootNamespace>SisConfPersistence</RootNamespace>
+    <AssemblyName>SisConfPersistence</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,21 +48,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Aquisicao.cs" />
-    <Compile Include="Model\Email.cs" />
-    <Compile Include="Model\Encomenda.cs" />
-    <Compile Include="Model\Endereco.cs" />
-    <Compile Include="Model\Sexo.cs" />
-    <Compile Include="Model\Cliente.cs" />
-    <Compile Include="Model\Estoque.cs" />
-    <Compile Include="Model\Insumo.cs" />
-    <Compile Include="Model\Marca.cs" />
-    <Compile Include="Model\Produto.cs" />
-    <Compile Include="Model\Telefone.cs" />
-    <Compile Include="Model\TipoCliente.cs" />
-    <Compile Include="Model\Util\TipoUnidadeMedida.cs" />
-    <Compile Include="Model\Util\UnidadeMedida.cs" />
+    <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SIsConf\SisConf.csproj">
+      <Project>{5b5cead2-053c-4f46-85d1-fb6396dbfeeb}</Project>
+      <Name>SisConf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,9 +8,13 @@ namespace SisConf.Model
 {
     public class Marca
     {
-
+        public int Id { get; set; }
         public string Nome { get; set; }
         private List<Insumo> insumos = null;
+
+        public Marca() {
+            insumos = new List<Insumo>();
+        }
 
         public Marca(string nomeDaMarca = null)
         {

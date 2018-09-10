@@ -8,15 +8,15 @@ namespace SisConf.Model
 {
     public class Insumo
     {
+        public int Id { get; set; }
         private Marca marca = null;
-        public int IdInsumo { get; set; }
-        public Marca Marca
+        public virtual Marca Marca
         {
             get {
                 return marca;
             }
             set {
-                if(marca != null)
+                if(value != null)
                 {
                     value.IncluirInsumo(this);
                 }
@@ -27,10 +27,21 @@ namespace SisConf.Model
         public string Nome { get; set; }
         public string Descricao { get; set; }
 
+        public Insumo() { }
+
         public Insumo(string nomeDoInsumo = null, Marca marca = null)
         {
             Nome = nomeDoInsumo;
             Marca = marca == null ? new Marca() : marca;
+            Unidade = new UnidadeMedida();
+        }
+
+        public Insumo(int id, string nomeDoInsumo = null, Marca marca = null)
+        {
+            Id = id;
+            Nome = nomeDoInsumo;
+            Marca = marca == null ? new Marca() : marca;
+            Unidade = new UnidadeMedida();
         }
 
     }

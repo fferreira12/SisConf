@@ -9,6 +9,8 @@ namespace SisConf.Model
     public class Telefone
     {
 
+        public int Id { get; set; }
+
         public int DDD { get; set; }
 
         //string para aceitar caracteres como #, * e +

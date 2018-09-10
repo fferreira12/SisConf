@@ -8,6 +8,7 @@ namespace SisConf.Model
 {
     public class Encomenda
     {
+        public int Id { get; set; }
         public DateTime DataRecebimento { get; set; }
         public DateTime DataHoraEntrega { get; set; }
         public Endereco EnderecoEntrega { get; set; }

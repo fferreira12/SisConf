@@ -8,7 +8,7 @@ namespace SisConf.Model
 {
     public class Aquisicao
     {
-
+        public int Id { get; set; }
         public Insumo Insumo { get; set; }
         public double Quantidade { get; set; }
         public double PrecoUnitario { get; set; }

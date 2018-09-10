@@ -8,7 +8,7 @@ namespace SisConf.Model
 {
     public class Produto
     {
-
+        public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         private Dictionary<Insumo, double> insumos = null;

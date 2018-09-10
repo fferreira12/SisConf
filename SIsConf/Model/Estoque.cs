@@ -8,6 +8,7 @@ namespace SisConf.Model
 {
     public class Estoque
     {
+        public int Id { get; set; }
         public string NomeDoEstoque { get; set; }
         private Dictionary<Insumo, double> estoque = null;
         private List<Aquisicao> aquisicoes = null;
