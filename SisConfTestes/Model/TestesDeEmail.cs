@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SisConfTestes
+namespace SisConfTestes.Model
 {
     [TestClass()]
     public class TestesDeEmail
