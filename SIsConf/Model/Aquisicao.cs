@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SisConf.Model.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SisConf.Model
 {
-    public class Aquisicao
+    public class Aquisicao : IIdentificadoNumericamente
     {
         public int Id { get; set; }
         public Insumo Insumo { get; set; }

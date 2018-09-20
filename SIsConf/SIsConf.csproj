@@ -45,6 +45,7 @@
     <Compile Include="Model\Email.cs" />
     <Compile Include="Model\Encomenda.cs" />
     <Compile Include="Model\Endereco.cs" />
+    <Compile Include="Model\Interfaces\IIdentificadoNumericamente.cs" />
     <Compile Include="Model\Sexo.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Estoque.cs" />
