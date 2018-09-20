@@ -1,0 +1,17 @@
+﻿@using SisConf.Model
+
+@model SisConf.Model.Cliente[]
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Clientes</h2>
+<ul>
+    @foreach (Cliente cliente in Model)
+    {
+        <li>@cliente.Nome</li>
+
+    }
+</ul>
+
