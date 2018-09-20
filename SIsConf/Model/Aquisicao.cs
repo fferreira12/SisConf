@@ -14,6 +14,13 @@ namespace SisConf.Model
         public double Quantidade { get; set; }
         public double PrecoUnitario { get; set; }
         public DateTime Data { get; set; }
+        public double PrecoTotal
+        {
+            get
+            {
+                return Quantidade * PrecoUnitario;
+            }
+        }
 
         public Aquisicao(){}
 

@@ -88,7 +88,7 @@ namespace SisConf.Model
             {
                 if(insumo != null && aquisicao.Insumo == insumo)
                 {
-                    ponderacao += aquisicao.Quantidade * aquisicao.PrecoUnitario;
+                    ponderacao += aquisicao.PrecoTotal;
                 }
             });
 
