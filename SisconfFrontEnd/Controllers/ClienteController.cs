@@ -32,7 +32,7 @@ namespace SisconfFrontEnd.Controllers
             using (SisConfDbContext db = new SisConfDbContext())
             {
                 db.Clientes.Add(c);
-
+                db.SaveChanges();
             }
 
 
