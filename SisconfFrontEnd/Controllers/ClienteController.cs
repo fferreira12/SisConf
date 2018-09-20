@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using SisConf.Model;
+using SisConfPersistence.Persistence;
 
 namespace SisconfFrontEnd.Controllers
 {
@@ -24,5 +25,18 @@ namespace SisconfFrontEnd.Controllers
         }
 
         public ActionResult Adicionar() => View();
+
+        public ActionResult SalvarCliente(Cliente c)
+        {
+
+            using (SisConfDbContext db = new SisConfDbContext())
+            {
+                db.Clientes.Add(c);
+
+            }
+
+
+            return View();
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace SisConfPersistence.Persistence
             //modelBuilder.ComplexType<Marca>();
             //modelBuilder.ComplexType<UnidadeMedida>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.HasDefaultSchema("SisConf");
             base.OnModelCreating(modelBuilder);
         }
     }
