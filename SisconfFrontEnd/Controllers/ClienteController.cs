@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SisConf.Model;
 using SisConfPersistence.Persistence;
 
 namespace SisconfFrontEnd.Controllers
@@ -29,7 +28,7 @@ namespace SisconfFrontEnd.Controllers
         public ActionResult SalvarCliente(Cliente c)
         {
 
-            using (SisConfDbContext db = new SisConfDbContext())
+            using (SisConfDbContext db = new SisConfDbContext("name=Home"))
             {
                 db.Clientes.Add(c);
                 db.SaveChanges();

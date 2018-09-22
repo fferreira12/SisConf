@@ -24,6 +24,11 @@ namespace SisConfPersistence.Persistence
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
 
+        public SisConfDbContext() : base("name=Home")
+        {
+
+        }
+
         public SisConfDbContext(string connString) : base(connString)
         {
             
