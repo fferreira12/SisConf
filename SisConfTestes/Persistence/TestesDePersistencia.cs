@@ -13,7 +13,7 @@ namespace SisConfTestes.Persistence
         [TestMethod]
         public void TestObterContexto()
         {
-            using (var context = new SisConfDbContext())
+            using (var context = new SisConfDbContext("name=Home"))
             {
                 var query = from i in context.Insumos
                             select i;
@@ -29,7 +29,7 @@ namespace SisConfTestes.Persistence
         [TestMethod]
         public void TestSalvarDados()
         {
-            using (var context = new SisConfDbContext())
+            using (var context = new SisConfDbContext("name=Home"))
             {
                 Insumo insumo = new Insumo(1, "Farinha de Trigo");
 
@@ -49,7 +49,7 @@ namespace SisConfTestes.Persistence
         [TestMethod]
         public void TestObterDados()
         {
-            using (var context = new SisConfDbContext())
+            using (var context = new SisConfDbContext("name=Home"))
             {
                 List<Insumo> insumosRecuperados = new List<Insumo>();
 
@@ -68,7 +68,7 @@ namespace SisConfTestes.Persistence
         [TestMethod]
         public void TestExcluirDados()
         {
-            using (var context = new SisConfDbContext())
+            using (var context = new SisConfDbContext("name=Home"))
             {
 
                 Insumo i = context.Insumos.Add(new Insumo());

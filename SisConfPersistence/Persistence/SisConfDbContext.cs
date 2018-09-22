@@ -24,13 +24,17 @@ namespace SisConfPersistence.Persistence
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
 
+        public SisConfDbContext(string connString) : base(connString)
+        {
+            
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //modelBuilder.ComplexType<Marca>();
             //modelBuilder.ComplexType<UnidadeMedida>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.HasDefaultSchema("SisConf");
+            //modelBuilder.HasDefaultSchema("SisConf");
             base.OnModelCreating(modelBuilder);
         }
     }
