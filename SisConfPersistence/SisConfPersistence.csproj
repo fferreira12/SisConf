@@ -57,6 +57,14 @@
     <Compile Include="Migrations\201809222111199_AddClienteRelations.Designer.cs">
       <DependentUpon>201809222111199_AddClienteRelations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809222158110_AddEncomendaProduto.cs" />
+    <Compile Include="Migrations\201809222158110_AddEncomendaProduto.Designer.cs">
+      <DependentUpon>201809222158110_AddEncomendaProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.cs" />
+    <Compile Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.Designer.cs">
+      <DependentUpon>201809222200199_AddEncomendaProdutoToProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +85,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809222111199_AddClienteRelations.resx">
       <DependentUpon>201809222111199_AddClienteRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809222158110_AddEncomendaProduto.resx">
+      <DependentUpon>201809222158110_AddEncomendaProduto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.resx">
+      <DependentUpon>201809222200199_AddEncomendaProdutoToProduto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
