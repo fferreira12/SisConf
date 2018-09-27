@@ -1,4 +1,5 @@
 ﻿using SisConf.Model.Interfaces;
+using SisConf.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
