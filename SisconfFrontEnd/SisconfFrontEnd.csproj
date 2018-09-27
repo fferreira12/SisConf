@@ -153,7 +153,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InsumosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -202,8 +201,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Cliente\Clientes.cshtml" />
-    <Content Include="Views\Cliente\Adicionar.cshtml" />
     <Content Include="Views\Insumos\Create.cshtml" />
     <Content Include="Views\Insumos\Delete.cshtml" />
     <Content Include="Views\Insumos\Details.cshtml" />
