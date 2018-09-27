@@ -38,6 +38,7 @@ namespace SisConfPersistence.Persistence
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EncomendaProduto>().HasKey(ep => new { ep.EncomendaId, ep.ProdutoId });
+            modelBuilder.Entity<Produto>().HasMany(p => p.ProdutoInsumo);
             //modelBuilder.ComplexType<Marca>();
             //modelBuilder.ComplexType<UnidadeMedida>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

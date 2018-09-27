@@ -16,6 +16,7 @@ namespace SisConf.Model
         private Estoque Estoque = null;
 
         public ICollection<EncomendaProduto> EncomendaProduto { get; set; }
+        public ICollection<ProdutoInsumo> ProdutoInsumo { get; set; }
 
         public Produto()
         {
