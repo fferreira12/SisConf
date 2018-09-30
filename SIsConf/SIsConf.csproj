@@ -47,6 +47,7 @@
     <Compile Include="Model\EncomendaProduto.cs" />
     <Compile Include="Model\Endereco.cs" />
     <Compile Include="Model\Interfaces\IIdentificadoNumericamente.cs" />
+    <Compile Include="Model\ProdutoInsumo.cs" />
     <Compile Include="Model\Sexo.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\Estoque.cs" />

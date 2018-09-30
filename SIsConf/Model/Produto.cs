@@ -16,6 +16,14 @@ namespace SisConf.Model
         private Estoque Estoque = null;
 
         public ICollection<EncomendaProduto> EncomendaProduto { get; set; }
+        public ICollection<ProdutoInsumo> ProdutoInsumo { get; set; }
+
+        public Produto()
+        {
+            Nome = null;
+            insumos = new Dictionary<Insumo, double>();
+
+        }
 
         public Produto(string nome = null)
         {
