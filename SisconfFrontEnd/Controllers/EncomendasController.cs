@@ -39,6 +39,20 @@ namespace SisconfFrontEnd.Controllers
         // GET: Encomendas/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> clientes = db.Clientes.Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Nome
+            });
+            ViewBag.Clientes = clientes;
+
+            IEnumerable<SelectListItem> produtos = db.Produtos.Select(p => new SelectListItem
+            {
+                Value = p.Id.ToString(),
+                Text = p.Nome
+            });
+            ViewBag.Produtos = produtos;
+
             return View();
         }
 

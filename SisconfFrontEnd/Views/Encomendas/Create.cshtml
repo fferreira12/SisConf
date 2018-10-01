@@ -1,4 +1,4 @@
-﻿@model SisConf.Model.Encomenda
+﻿@model SisconfFrontEnd.Models.EncomendaViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -8,27 +8,40 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Encomenda</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
+            @Html.LabelFor(model => model.Cliente, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ClienteId, new SelectList(ViewBag.Clientes, "Value", "Text"), "", new { @class = "form-control" })
+            </div>
+        </div>
+
+
+
+
+
+
+        @*<div class="form-group">
             @Html.LabelFor(model => model.DataRecebimento, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DataRecebimento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DataRecebimento, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DataHoraEntrega, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.HoraEntrega, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataHoraEntrega, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DataHoraEntrega, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.HoraEntrega, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoraEntrega, "", new { @class = "text-danger" })
             </div>
         </div>
 

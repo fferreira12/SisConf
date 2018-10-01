@@ -69,6 +69,10 @@
     <Compile Include="Migrations\201809271624512_AddRelacaoProdutoInsumo.Designer.cs">
       <DependentUpon>201809271624512_AddRelacaoProdutoInsumo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810011527482_work-migration.cs" />
+    <Compile Include="Migrations\201810011527482_work-migration.Designer.cs">
+      <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +102,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809271624512_AddRelacaoProdutoInsumo.resx">
       <DependentUpon>201809271624512_AddRelacaoProdutoInsumo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810011527482_work-migration.resx">
+      <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
