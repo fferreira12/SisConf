@@ -23,7 +23,7 @@ namespace SisConfTestes.Funcionalidade
             insumo2.Marca = marca1;
             insumo3.Marca = marca1;
 
-            List<Insumo> insumosMarca1 = marca1.ObterInsumos();
+            ICollection<Insumo> insumosMarca1 = marca1.ObterInsumos();
 
             Aquisicao aq1 = new Aquisicao(insumo1, 10, 3.5);
             Aquisicao aq2 = new Aquisicao(insumo2, 10, 3.5);

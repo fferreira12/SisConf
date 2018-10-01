@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SisConf.Model.Util;
 
 namespace SisConf.Model
 {
@@ -16,6 +17,7 @@ namespace SisConf.Model
         public Endereco EnderecoEntrega { get; set; }
         public Cliente Cliente { get; set; }
         public string Observacoes { get; set; }
+        public StatusEncomenda Status { get; set; }
 
         //private Dictionary<Produto, double> produtosDaEncomenda;
         public ICollection<EncomendaProduto> EncomendaProduto { get; set; }

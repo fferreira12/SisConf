@@ -1,4 +1,4 @@
-﻿@model SisConf.Model.Insumo
+﻿@model SisConf.Model.Encomenda
 
 @{
     ViewBag.Title = "Details";
@@ -8,31 +8,31 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Insumo</h4>
+    <h4>Encomenda</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.DataRecebimento)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Nome)
+            @Html.DisplayFor(model => model.DataRecebimento)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Marca)
+            @Html.DisplayNameFor(model => model.DataHoraEntrega)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Marca.Nome)
+            @Html.DisplayFor(model => model.DataHoraEntrega)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.DisplayNameFor(model => model.Observacoes)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descricao)
+            @Html.DisplayFor(model => model.Observacoes)
         </dd>
 
     </dl>

@@ -7,121 +7,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SisConf.Model;
-using SisconfFrontEnd.Models;
 using SisConfPersistence.Persistence;
 
 namespace SisconfFrontEnd.Controllers
 {
-    public class InsumosController : Controller
+    public class MarcasController : Controller
     {
         private SisConfDbContext db = new SisConfDbContext();
 
-        // GET: Insumos
+        // GET: Marcas
         public ActionResult Index()
         {
-            return View(db.Insumos.ToList());
+            return View(db.Marcas.ToList());
         }
 
-        // GET: Insumos/Details/5
+        // GET: Marcas/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Insumo insumo = db.Insumos.Find(id);
-            if (insumo == null)
+            Marca marca = db.Marcas.Find(id);
+            if (marca == null)
             {
                 return HttpNotFound();
             }
-            return View(insumo);
+            return View(marca);
         }
 
-        // GET: Insumos/Create
+        // GET: Marcas/Create
         public ActionResult Create()
         {
-            IEnumerable<SelectListItem> items = db.Marcas.Select(m => new SelectListItem
-            {
-                Value = m.Id.ToString(),
-                Text = m.Nome
-            });
-            ViewBag.Marcas = items;
             return View();
         }
 
-        // POST: Insumos/Create
+        // POST: Marcas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateInsumoViewModel createInsumoVM)
+        public ActionResult Create([Bind(Include = "Id,Nome")] Marca marca)
         {
             if (ModelState.IsValid)
             {
-                Insumo insumo = createInsumoVM.Insumo;
-                insumo.Marca = db.Marcas.Find(createInsumoVM.SelectedMarcaId);
-
-                db.Insumos.Add(insumo);
+                db.Marcas.Add(marca);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(createInsumoVM.Insumo);
+            return View(marca);
         }
 
-        // GET: Insumos/Edit/5
+        // GET: Marcas/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Insumo insumo = db.Insumos.Find(id);
-            if (insumo == null)
+            Marca marca = db.Marcas.Find(id);
+            if (marca == null)
             {
                 return HttpNotFound();
             }
-            return View(insumo);
+            return View(marca);
         }
 
-        // POST: Insumos/Edit/5
+        // POST: Marcas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Descricao")] Insumo insumo)
+        public ActionResult Edit([Bind(Include = "Id,Nome")] Marca marca)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(insumo).State = EntityState.Modified;
+                db.Entry(marca).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(insumo);
+            return View(marca);
         }
 
-        // GET: Insumos/Delete/5
+        // GET: Marcas/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Insumo insumo = db.Insumos.Find(id);
-            if (insumo == null)
+            Marca marca = db.Marcas.Find(id);
+            if (marca == null)
             {
                 return HttpNotFound();
             }
-            return View(insumo);
+            return View(marca);
         }
 
-        // POST: Insumos/Delete/5
+        // POST: Marcas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Insumo insumo = db.Insumos.Find(id);
-            db.Insumos.Remove(insumo);
+            Marca marca = db.Marcas.Find(id);
+            db.Marcas.Remove(marca);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
