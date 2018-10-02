@@ -25,7 +25,7 @@ namespace SisConfPersistence.Persistence
         public DbSet<Telefone> Telefones { get; set; }
         public DbSet<EncomendaProduto> EncomendaProduto { get; set; }
 
-        public SisConfDbContext() : base("name=Home")
+        public SisConfDbContext() : base("name=CollegeLab")
         {
 
         }

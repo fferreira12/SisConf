@@ -7,135 +7,111 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SisConf.Model;
-using SisconfFrontEnd.Models;
 using SisConfPersistence.Persistence;
-using SisConf.Model.Util;
 
 namespace SisconfFrontEnd.Controllers
 {
-    public class EncomendasController : Controller
+    public class ClientesController : Controller
     {
         private SisConfDbContext db = new SisConfDbContext();
 
-        // GET: Encomendas
+        // GET: Clientes
         public ActionResult Index()
         {
-            var encomendas = db.Encomendas.Include(e => e.Cliente);
-            return View(encomendas.ToList());
+            return View(db.Clientes.ToList());
         }
 
-        // GET: Encomendas/Details/5
+        // GET: Clientes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Encomenda encomenda = db.Encomendas.Find(id);
-            if (encomenda == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(encomenda);
+            return View(cliente);
         }
 
-        // GET: Encomendas/Create
+        // GET: Clientes/Create
         public ActionResult Create()
         {
-            IEnumerable<SelectListItem> clientes = db.Clientes.Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Nome
-            });
-            ViewBag.Clientes = clientes;
-
-            IEnumerable<SelectListItem> produtos = db.Produtos.Select(p => new SelectListItem
-            {
-                Value = p.Id.ToString(),
-                Text = p.Nome
-            });
-            ViewBag.Produtos = produtos;
-
             return View();
         }
 
-        // POST: Encomendas/Create
+        // POST: Clientes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClienteId,HoraEntrega,Observacoes")] EncomendaViewModel encomenda)
+        public ActionResult Create([Bind(Include = "Id,Nome,Sobrenome,Descricao,CPF,DataDeNascimento,Sexo,TipoCliente")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                Encomenda enc = new Encomenda();
-                enc.DataRecebimento = DateTime.Now;
-                enc.DataHoraEntrega = encomenda.HoraEntrega;
-                enc.Observacoes = encomenda.Observacoes;
-                enc.Status = StatusEncomenda.ATIVA;
-                enc.Cliente = db.Clientes.FirstOrDefault(c => c.Id == encomenda.ClienteId);
-
-                db.Encomendas.Add(enc);
+                db.Clientes.Add(cliente);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(encomenda);
+            return View(cliente);
         }
 
-        // GET: Encomendas/Edit/5
+        // GET: Clientes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Encomenda encomenda = db.Encomendas.Find(id);
-            if (encomenda == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(encomenda);
+            return View(cliente);
         }
 
-        // POST: Encomendas/Edit/5
+        // POST: Clientes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DataRecebimento,DataHoraEntrega,Observacoes")] Encomenda encomenda)
+        public ActionResult Edit([Bind(Include = "Id,Nome,Sobrenome,Descricao,CPF,DataDeNascimento,Sexo,TipoCliente")] Cliente cliente)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(encomenda).State = EntityState.Modified;
+                db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(encomenda);
+            return View(cliente);
         }
 
-        // GET: Encomendas/Delete/5
+        // GET: Clientes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Encomenda encomenda = db.Encomendas.Find(id);
-            if (encomenda == null)
+            Cliente cliente = db.Clientes.Find(id);
+            if (cliente == null)
             {
                 return HttpNotFound();
             }
-            return View(encomenda);
+            return View(cliente);
         }
 
-        // POST: Encomendas/Delete/5
+        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Encomenda encomenda = db.Encomendas.Find(id);
-            db.Encomendas.Remove(encomenda);
+            Cliente cliente = db.Clientes.Find(id);
+            db.Clientes.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
