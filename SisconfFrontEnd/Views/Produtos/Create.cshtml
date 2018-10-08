@@ -1,4 +1,4 @@
-﻿@model SisConf.Model.Produto
+﻿@model SisconfFrontEnd.Models.ProdutoViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -12,37 +12,71 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Produto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-            </div>
+<div class="form-horizontal">
+    <h4>Produto</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+    <!--Insumos do Produto-->
+    <div class="form-group">
+        <button class="btn btn-success btn-block" onclick="novoInsumo()" id="btn-add-insumo">Novo Insumo</button>
+    </div>
+    <div class="form-group" id="insumos-list">
+        <div id="insumo" >
+            @Html.LabelFor(model => model.Insumos, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.Insumos, new SelectList(ViewBag.Insumos, "Value", "Text"), "", new { @class = "form-control" })
+            </div>
+            <div class="col-md-5">
+                @*@Html.EditorFor(model => model.Quantidades, new { htmlAttributes = new { @class = "form-control" } })*@
+                <input type="text" name="Quantidades" value="0" class="form-control" placeholder="Quantidade" />
             </div>
         </div>
     </div>
+
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+<script>
+    document.getElementById("btn-add-insumo").addEventListener("click", function (event)
+    {
+        event.preventDefault();
+    });
+
+    function novoInsumo()
+    {
+        let insumoForm = document.getElementById("insumo");
+        let clone = insumoForm.cloneNode(true);
+        document.getElementById("insumos-list").appendChild(clone);
+    }
+</script>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
