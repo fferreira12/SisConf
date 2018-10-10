@@ -22,5 +22,17 @@ namespace SisConfTestes.Mocking
         {
             mocker.CriarClientes();
         }
+
+        [TestMethod]
+        public void TestCriarProdutos()
+        {
+            mocker.CriarProdutos();
+        }
+
+        [TestMethod]
+        public void TestCriarEncomendas()
+        {
+            mocker.CriarEncomendas(140);
+        }
     }
 }

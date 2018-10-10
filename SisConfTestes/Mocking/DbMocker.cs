@@ -1,4 +1,5 @@
 ﻿using SisConf.Model;
+using SisConf.Model.Util;
 using SisConfPersistence.Persistence;
 using System;
 using System.Collections.Generic;
@@ -156,6 +157,38 @@ namespace SisConfTestes.Mocking
             return insumo;
         }
 
+        public void CriarProdutos()
+        {
+            List<Insumo> insumos = _db.Insumos.ToList();
+
+            for (int i = 0; i < nomesProdutos.Count(); i++)
+            {
+                Produto prod = new Produto(nomesProdutos[i])
+                {
+                    Descricao = nomesProdutos[i],
+                };
+
+                int quantidadeDeInsumos = random.Next(5) + 1;
+
+
+                prod.ProdutoInsumo = new List<ProdutoInsumo>();
+                for(int j = 0; j < quantidadeDeInsumos; j++)
+                {
+                    ProdutoInsumo pi = new ProdutoInsumo()
+                    {
+                        Insumo = GetRandomFromArray(insumos.ToArray()),
+                        Produto = prod,
+                        Quantidade = random.NextDouble() * 10 + 1
+                    };
+                    prod.ProdutoInsumo.Add(pi);
+                }
+
+                _db.Produtos.Add(prod);
+            }
+
+            _db.SaveChanges();
+        }
+
         public void CriarClientes()
         {
             foreach (string nome in nomesClientes)
@@ -202,6 +235,40 @@ namespace SisConfTestes.Mocking
         private static T GetRandomFromArray<T>(T[] itemsArray)
         {
             return itemsArray[random.Next(itemsArray.Count())];
+        }
+
+        public void CriarEncomendas(int quantidade) 
+        {
+            ICollection<Cliente> clientes = _db.Clientes.Include(c => c.Enderecos).ToList();
+            ICollection<Produto> produtos = _db.Produtos.ToList();
+            for (int i = 0; i < quantidade; i++)
+            {
+                bool passada = random.NextDouble() < 0.85;
+
+                Encomenda enc = new Encomenda()
+                {
+                    Cliente = GetRandomFromArray(clientes.ToArray()),
+                    DataHoraEntrega = passada ? DateTime.Now.AddDays(-random.NextDouble() * 150) : DateTime.Now.AddDays(random.NextDouble() * 30),
+                    DataRecebimento = passada ? DateTime.Now.AddDays(-random.NextDouble() * 180) : DateTime.Now,
+                    Status = passada ? StatusEncomenda.FINALIZADA : StatusEncomenda.ATIVA   
+                };
+
+                enc.EncomendaProduto = new List<EncomendaProduto>()
+                {
+                    new EncomendaProduto(
+                        enc,
+                        GetRandomFromArray(produtos.ToArray()),
+                        random.NextDouble()*10
+                    )
+                };
+
+                enc.EnderecoEntrega = enc.Cliente.Enderecos.ToArray()[0];
+
+                _db.Encomendas.Add(enc);
+
+            }
+
+            _db.SaveChanges();
         }
     }
 }
