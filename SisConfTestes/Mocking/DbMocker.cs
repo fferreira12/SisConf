@@ -14,6 +14,10 @@ namespace SisConfTestes.Mocking
     {
         private SisConfDbContext _db = null;
         static Random random = new Random();
+        private List<Insumo> insumos = null;
+        private List<Produto> produtos = null;
+        private List<Cliente> clientes = null;
+
 
         private static Marca[] marcas = new[] {
             new Marca("Marca 1"),
@@ -128,6 +132,9 @@ namespace SisConfTestes.Mocking
         public DbMocker(SisConfDbContext db)
         {
             _db = db;
+            insumos = _db.Insumos.ToList();
+            produtos = _db.Produtos.ToList();
+            clientes = _db.Clientes.Include(c => c.Enderecos).ToList();
         }
 
         public void CriarInsumos()
@@ -159,7 +166,7 @@ namespace SisConfTestes.Mocking
 
         public void CriarProdutos()
         {
-            List<Insumo> insumos = _db.Insumos.ToList();
+            //List<Insumo> insumos = _db.Insumos.ToList();
 
             for (int i = 0; i < nomesProdutos.Count(); i++)
             {
@@ -239,8 +246,8 @@ namespace SisConfTestes.Mocking
 
         public void CriarEncomendas(int quantidade) 
         {
-            ICollection<Cliente> clientes = _db.Clientes.Include(c => c.Enderecos).ToList();
-            ICollection<Produto> produtos = _db.Produtos.ToList();
+            //ICollection<Cliente> clientes = _db.Clientes.Include(c => c.Enderecos).ToList();
+            //ICollection<Produto> produtos = _db.Produtos.ToList();
             for (int i = 0; i < quantidade; i++)
             {
                 bool passada = random.NextDouble() < 0.85;
@@ -268,6 +275,21 @@ namespace SisConfTestes.Mocking
 
             }
 
+            _db.SaveChanges();
+        }
+
+        public void CriarAquisicoes()
+        {
+            for(int i = 0; i < nomesInsumos.Length; i++)
+            {
+                int quantidadeDeAquisicoes = random.Next(5, 11);
+
+                for(int j = 0; j < quantidadeDeAquisicoes; j++)
+                {
+                    Aquisicao aquis = new Aquisicao(GetRandomFromArray(insumos.ToArray()), random.NextDouble() * 150 + 50, random.NextDouble() * 90 + 10);
+                    _db.Aquisicoes.Add(aquis);
+                }
+            }
             _db.SaveChanges();
         }
     }

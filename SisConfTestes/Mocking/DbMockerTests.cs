@@ -34,5 +34,11 @@ namespace SisConfTestes.Mocking
         {
             mocker.CriarEncomendas(140);
         }
+
+        [TestMethod]
+        public void TestCriarAquisicoes()
+        {
+            mocker.CriarAquisicoes();
+        }
     }
 }
