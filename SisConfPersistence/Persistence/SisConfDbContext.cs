@@ -23,13 +23,29 @@ namespace SisConfPersistence.Persistence
         public DbSet<Estoque> Estoques { get; set; }
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<Telefone> Telefones { get; set; }
+        public DbSet<EncomendaProduto> EncomendaProduto { get; set; }
+        public DbSet<ProdutoInsumo> ProdutoInsumo { get; set; }
 
+        public SisConfDbContext() : base("name=Home")
+        {
+
+        }
+
+        public SisConfDbContext(string connString) : base(connString)
+        {
+            
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<EncomendaProduto>().HasKey(ep => new { ep.EncomendaId, ep.ProdutoId });
+            modelBuilder.Entity<Produto>().HasMany(p => p.ProdutoInsumo);
             //modelBuilder.ComplexType<Marca>();
             //modelBuilder.ComplexType<UnidadeMedida>();
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.HasDefaultSchema("SisConf");
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

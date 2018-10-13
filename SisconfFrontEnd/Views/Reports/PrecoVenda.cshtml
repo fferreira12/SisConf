@@ -1,0 +1,52 @@
+﻿@model SisconfFrontEnd.Models.CustosViewModel
+@{
+    ViewBag.Title = "Custos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Preços de Venda - Margem @Model.margemLucro %</h2>
+
+<input id="margin-text" class="form-control" type="text" name="margem" value="0" />
+<button class="btn btn-primary" id="btn-calcular-margem">Calcular</button>
+
+<table class="table">
+    <tr>
+        <th>
+            Produto
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Custo
+        </th>
+        <th>
+            Preço de Venda
+        </th>
+    </tr>
+    @for (int i = 0; i < Model.produtos.Count; i++)
+    {
+        <tr>
+            <td>
+                @Model.produtos[i].Nome
+            </td>
+            <td>
+                @Model.produtos[i].Descricao
+            </td>
+            <td>
+                @string.Format("{0:C}", Model.custos[i])
+            </td>
+            <td>
+                @string.Format("{0:C}", (Model.custos[i] / (1 - @Model.margemLucro / 100)))
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    
+    document.querySelector("#btn-calcular-margem").addEventListener("click", function () {
+        let margin = document.querySelector('#margin-text').value;
+        window.location = ('/Reports/PrecoVenda/'+margin);
+    });
+</script>

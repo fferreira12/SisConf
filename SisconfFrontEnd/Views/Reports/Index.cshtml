@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Relatórios</h2>
+<ul>
+    <li>
+        @Html.ActionLink("Custos de Produtos", "Custos", "Reports")<br />
+    </li>
+    <li>
+        @Html.ActionLink("Lucros e Prejuízos", "Lucros", "Reports")
+    </li>
+    <li>
+        @Html.ActionLink("Disponibilidade em de Insumos", "Disponibilidade", "Reports")
+    </li>
+</ul>
