@@ -1,0 +1,34 @@
+﻿@model SisconfFrontEnd.Models.CustosViewModel
+@{
+    ViewBag.Title = "Custos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Custos</h2>
+<table class="table">
+    <tr>
+        <th>
+            Produto
+        </th>
+        <th>
+            Descrição
+        </th>
+        <th>
+            Custo
+        </th>
+    </tr>
+    @for (int i = 0; i < Model.produtos.Count; i++)
+    {
+        <tr>
+            <td>
+                @Model.produtos[i].Nome
+            </td>
+            <td>
+                @Model.produtos[i].Descricao
+            </td>
+            <td>
+                @string.Format("{0:C}", Model.custos[i])
+            </td>
+        </tr>
+    }
+</table>

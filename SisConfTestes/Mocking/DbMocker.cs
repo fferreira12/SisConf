@@ -292,6 +292,49 @@ namespace SisConfTestes.Mocking
             }
             _db.SaveChanges();
         }
+
+        public void AlterarPrecosDeVendaDasEncomendas()
+        {
+            List<Encomenda> encomendas = _db.Encomendas
+                .Include(e => e.Cliente)
+                .Include(e => e.EncomendaProduto
+                .Select(ep => ep.Produto)
+                .Select(ep => ep.ProdutoInsumo
+                .Select(pi => pi.Insumo)))
+                .ToList();
+
+            //get que acquisitions
+            List<Aquisicao> aquisicoes = _db.Aquisicoes.Include(aq => aq.Insumo).ToList();
+
+            Estoque estoque = new Estoque();
+            estoque.IncluirAquisicao(aquisicoes.ToArray());
+
+            List<double> custos = new List<double>();
+
+            for (int i = 0; i < encomendas.Count; i++)
+            {
+                double custoEncomenda = 0;
+                foreach (EncomendaProduto ep in encomendas[i].EncomendaProduto)
+                {
+                    custoEncomenda += ep.Produto.CalcularCustoDoProduto(estoque);
+                }
+                custos.Add(custoEncomenda);
+
+                bool lucro = random.NextDouble() > 0.7;
+
+                if(lucro)
+                {
+                    encomendas[i].PrecoVenda = custos[i] * (random.NextDouble() * 0.4 + 1.1);
+                } else
+                {
+                    encomendas[i].PrecoVenda = custos[i] * (random.NextDouble() * 0.5 + 0.5);
+                }
+
+            }
+            _db.SaveChanges();
+        }
+
+
     }
 }
 

@@ -18,6 +18,7 @@ namespace SisConf.Model
         public Cliente Cliente { get; set; }
         public string Observacoes { get; set; }
         public StatusEncomenda Status { get; set; }
+        public double PrecoVenda { get; set; }
 
         //private Dictionary<Produto, double> produtosDaEncomenda;
         public ICollection<EncomendaProduto> EncomendaProduto { get; set; }

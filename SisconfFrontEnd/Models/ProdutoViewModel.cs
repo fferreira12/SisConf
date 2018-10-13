@@ -3,18 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace SisconfFrontEnd.Models
 {
     public class ProdutoViewModel
     {
-
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public ICollection<int> Insumos { get; set; }
-        public List<string> InsumosNomes { get; set; }
-        public ICollection<double> Quantidades { get; set; }
+
+        public List<Insumo> insumosDisponiveis = null;
+
+        public List<int> insumosIds { get; set; }
+        public List<string> insumosNomes { get; set; }
+        public List<double> insumosQuantidades { get; set; }
 
         public ProdutoViewModel() { }
 
@@ -23,16 +26,17 @@ namespace SisconfFrontEnd.Models
             Id = produto.Id;
             Nome = produto.Nome;
             Descricao = produto.Descricao;
-            Insumos = new List<int>();
-            Quantidades = new List<double>();
-            foreach (var produtoInsumo in produto.ProdutoInsumo)
+
+            insumosIds = new List<int>();
+            insumosNomes = new List<string>();
+            insumosQuantidades = new List<double>();
+            foreach(ProdutoInsumo pi in produto.ProdutoInsumo)
             {
-                Insumos.Add(produtoInsumo.Insumo.Id);
-                Quantidades.Add(produtoInsumo.Quantidade);
+                insumosIds.Add(pi.Insumo.Id);
+                insumosNomes.Add(pi.Insumo.Nome);
+                insumosQuantidades.Add(pi.Quantidade);
             }
 
         }
-
-
     }
 }

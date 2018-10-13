@@ -53,9 +53,13 @@ namespace SisConf.Model
             }
 
             double valorTotal = 0;
-            foreach (var insumo in insumos)
+            //foreach (var insumo in insumos)
+            //{
+            //    valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);
+            //}
+            foreach (ProdutoInsumo produtoInsumo in ProdutoInsumo)
             {
-                valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);
+                valorTotal += produtoInsumo.Quantidade * Estoque.CalcularPrecoMedio(produtoInsumo.Insumo);
             }
             return valorTotal;
         }

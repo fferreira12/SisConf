@@ -62,7 +62,13 @@ namespace SisConf.Model
         public double ObterQuantidade(Insumo insumo)
         {
             AtualizarEstoque();
-            return estoque[insumo];
+            try
+            {
+                return estoque[insumo];
+            } catch(Exception e)
+            {
+                return 0;
+            }
         }
 
         public double ValorTotalDoEstoque()

@@ -29,6 +29,15 @@ namespace SisConf.Model
             Insumo = insumo;
             Quantidade = quantidade;
             PrecoUnitario = precoUnitario;
+            Data = DateTime.Now;
+        }
+
+        public Aquisicao(Insumo insumo, double quantidade, double precoUnitario, DateTime data)
+        {
+            Insumo = insumo;
+            Quantidade = quantidade;
+            PrecoUnitario = precoUnitario;
+            Data = data;
         }
 
     }

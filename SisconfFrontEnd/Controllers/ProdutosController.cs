@@ -4,7 +4,6 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using SisConf.Model;
@@ -30,26 +29,18 @@ namespace SisconfFrontEnd.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var produtos = db.Produtos
-                .Include(p => p.ProdutoInsumo.Select(pi => pi.Insumo));
-            var produto = produtos.FirstOrDefault(p => p.Id == id);
-
+            var produtos = db.Produtos.Include(p => p.ProdutoInsumo.Select(pi => pi.Insumo)).ToList();
+            Produto produto = produtos.Find(p => p.Id == id);
             if (produto == null)
             {
                 return HttpNotFound();
             }
-            return View(produto);
+            return View(new ProdutoViewModel(produto));
         }
 
         // GET: Produtos/Create
         public ActionResult Create()
         {
-            IEnumerable<SelectListItem> insumos = db.Insumos.Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Nome
-            });
-            ViewBag.Insumos = insumos;
             return View();
         }
 
@@ -58,44 +49,16 @@ namespace SisconfFrontEnd.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProdutoViewModel produtoViewModel)
+        public ActionResult Create([Bind(Include = "Id,Nome,Descricao")] Produto produto)
         {
-
-            if(produtoViewModel.Insumos == null || produtoViewModel.Quantidades == null)
-            {
-                Response.StatusCode = 404;  //you may want to set this to 200
-                return View("BadRequest");
-            }
-
-            Produto p = new Produto()
-            {
-                Descricao = produtoViewModel.Descricao,
-                Nome = produtoViewModel.Nome
-            };
-
-            p.ProdutoInsumo = new List<ProdutoInsumo>();
-            for (int i = 0; i < produtoViewModel.Insumos.Count; i++)
-            {
-                Insumo insumo = db.Insumos.Find(produtoViewModel.Insumos.ElementAt(i));
-
-                ProdutoInsumo pi = new ProdutoInsumo()
-                {
-                    Produto = p,
-                    Insumo = insumo,
-                    Quantidade = produtoViewModel.Quantidades.ElementAt(i)
-                };
-
-                p.ProdutoInsumo.Add(pi);
-            }
-
             if (ModelState.IsValid)
             {
-                db.Produtos.Add(p);
+                db.Produtos.Add(produto);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(produtoViewModel);
+            return View(produto);
         }
 
         // GET: Produtos/Edit/5
@@ -105,24 +68,18 @@ namespace SisconfFrontEnd.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var produtos = db.Produtos.Include(p => p.ProdutoInsumo.Select(pi => pi.Insumo));
-            Produto produto = produtos.FirstOrDefault(p => p.Id == id);
-            IEnumerable<SelectListItem> insumos = db.Insumos.Select(c => new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = c.Nome
-            });
-            List<string> insumosNomes = produto.ProdutoInsumo.Select(pi => pi.Insumo.Nome).ToList();//db.Insumos.Select(i => i.Nome).ToList();
-            ViewBag.Insumos = insumos;
-            ViewBag.InsumosNomes = insumosNomes;
+            var produtos = db.Produtos.Include(p => p.ProdutoInsumo.Select(pi => pi.Insumo)).ToList();
+            Produto produto = produtos.Find(p => p.Id == id);
 
-            ProdutoViewModel pvm = new ProdutoViewModel(produto);
-            pvm.InsumosNomes = insumosNomes;
-
+            var insumosDisponiveis = db.Insumos.Select(i => i);
             if (produto == null)
             {
                 return HttpNotFound();
             }
+
+            ProdutoViewModel pvm = new ProdutoViewModel(produto);
+            pvm.insumosDisponiveis = insumosDisponiveis.ToList();
+
             return View(pvm);
         }
 
@@ -131,47 +88,27 @@ namespace SisconfFrontEnd.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProdutoViewModel produtoViewModel)
+        public ActionResult Edit(ProdutoViewModel produto)
         {
-            if (produtoViewModel.Insumos == null || produtoViewModel.Quantidades == null)
+
+            var form = Request.Form.GetValues(4);
+            var form2 = Request.Form.GetValues(5);
+
+
+            for(int i = 0; i < Request.Form.Keys.Count; i++)
             {
-                Response.StatusCode = 404;  //you may want to set this to 200
-                return View("BadRequest");
+
             }
-            var produtos = db.Produtos.Include(prod => prod.ProdutoInsumo);
-            Produto p = produtos.First(pi => pi.Id == produtoViewModel.Id);
 
-            p.Descricao = produtoViewModel.Descricao;
-            p.Nome = produtoViewModel.Nome;
 
-            p.ProdutoInsumo = new List<ProdutoInsumo>();
-            for (int i = 0; i < produtoViewModel.Insumos.Count; i++)
-            {
-                Insumo insumo = db.Insumos.Find(produtoViewModel.Insumos.ElementAt(i));
 
-                if(insumo == null)
-                {
-                    var insumoName = Request.Form;
-
-                    //insumo = db.Insumos.First(ins => ins.Nome == insumoName);
-                }
-
-                ProdutoInsumo pi = new ProdutoInsumo()
-                {
-                    Produto = p,
-                    Insumo = insumo,
-                    Quantidade = produtoViewModel.Quantidades.ElementAt(i)
-                };
-
-                p.ProdutoInsumo.Add(pi);
-            }
             if (ModelState.IsValid)
             {
-                db.Entry(p).State = EntityState.Modified;
+                db.Entry(produto).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(p);
+            return View(produto);
         }
 
         // GET: Produtos/Delete/5
@@ -196,10 +133,6 @@ namespace SisconfFrontEnd.Controllers
         {
             Produto produto = db.Produtos.Find(id);
             db.Produtos.Remove(produto);
-
-            db.ProdutoInsumo.RemoveRange(db.ProdutoInsumo.Where(pi => pi.Produto.Id == id));
-
-
             db.SaveChanges();
             return RedirectToAction("Index");
         }

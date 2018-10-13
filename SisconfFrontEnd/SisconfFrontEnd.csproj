@@ -155,11 +155,14 @@
     <Compile Include="Controllers\InsumosController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CreateInsumoViewModel.cs" />
+    <Compile Include="Models\CustosViewModel.cs" />
     <Compile Include="Models\EncomendaViewModel.cs" />
+    <Compile Include="Models\LucrosViewModel.cs" />
     <Compile Include="Models\ProdutoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -238,11 +241,6 @@
     <Content Include="Views\Insumos\Details.cshtml" />
     <Content Include="Views\Insumos\Edit.cshtml" />
     <Content Include="Views\Insumos\Index.cshtml" />
-    <Content Include="Views\Produtos\Create.cshtml" />
-    <Content Include="Views\Produtos\Delete.cshtml" />
-    <Content Include="Views\Produtos\Details.cshtml" />
-    <Content Include="Views\Produtos\Edit.cshtml" />
-    <Content Include="Views\Produtos\Index.cshtml" />
     <Content Include="Views\Marcas\Create.cshtml" />
     <Content Include="Views\Marcas\Delete.cshtml" />
     <Content Include="Views\Marcas\Details.cshtml" />
@@ -267,12 +265,24 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Produtos\Create.cshtml" />
+    <Content Include="Views\Produtos\Delete.cshtml" />
+    <Content Include="Views\Produtos\Details.cshtml" />
+    <Content Include="Views\Produtos\Edit.cshtml" />
+    <Content Include="Views\Produtos\Index.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Custos.cshtml" />
+    <Content Include="Views\Reports\Lucros.cshtml" />
+    <Content Include="Views\Reports\Disponibilidade.cshtml" />
+    <Content Include="Views\Reports\PrecoVenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>

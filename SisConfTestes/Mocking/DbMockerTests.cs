@@ -10,6 +10,14 @@ namespace SisConfTestes.Mocking
         private static SisConfDbContext _db = new SisConfDbContext();
         private static DbMocker mocker = new DbMocker(_db);
 
+        public void TestInicializarBD()
+        {
+            TestCriarInsumos();
+            TestCriarAquisicoes();
+            TestCriarProdutos();
+            TestCriarClientes();
+            TestCriarEncomendas();
+        }
 
         [TestMethod]
         public void TestCriarInsumos()
@@ -39,6 +47,12 @@ namespace SisConfTestes.Mocking
         public void TestCriarAquisicoes()
         {
             mocker.CriarAquisicoes();
+        }
+
+        [TestMethod]
+        public void TestAlterarPrecoEncomendas()
+        {
+            mocker.AlterarPrecosDeVendaDasEncomendas();
         }
     }
 }

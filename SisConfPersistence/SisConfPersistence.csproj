@@ -74,6 +74,10 @@
     <Compile Include="Migrations\201810011527482_work-migration.Designer.cs">
       <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810131902395_AddPrecoVendaEncomenda.cs" />
+    <Compile Include="Migrations\201810131902395_AddPrecoVendaEncomenda.Designer.cs">
+      <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810011527482_work-migration.resx">
       <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810131902395_AddPrecoVendaEncomenda.resx">
+      <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
