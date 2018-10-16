@@ -320,14 +320,14 @@ namespace SisConfTestes.Mocking
                 }
                 custos.Add(custoEncomenda);
 
-                bool lucro = random.NextDouble() > 0.7;
+                bool lucro = random.NextDouble() < 0.7;
 
                 if(lucro)
                 {
                     encomendas[i].PrecoVenda = custos[i] * (random.NextDouble() * 0.4 + 1.1);
                 } else
                 {
-                    encomendas[i].PrecoVenda = custos[i] * (random.NextDouble() * 0.5 + 0.5);
+                    encomendas[i].PrecoVenda = custos[i] * (random.NextDouble() * 0.2 + 0.8);
                 }
 
             }
