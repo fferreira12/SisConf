@@ -7,7 +7,10 @@
 <h2>Relatórios</h2>
 <ul>
     <li>
-        @Html.ActionLink("Custos de Produtos", "Custos", "Reports")<br />
+        @Html.ActionLink("Custos de Produtos", "Custos", "Reports")
+    </li>
+    <li>
+        @Html.ActionLink("Preços para Venda", "PrecoVenda", "Reports", new { id = 10 }, null)
     </li>
     <li>
         @Html.ActionLink("Lucros e Prejuízos", "Lucros", "Reports")
