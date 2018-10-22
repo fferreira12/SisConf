@@ -78,6 +78,18 @@
     <Compile Include="Migrations\201810131902395_AddPrecoVendaEncomenda.Designer.cs">
       <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810222120210_AddSaidaEstoque.cs" />
+    <Compile Include="Migrations\201810222120210_AddSaidaEstoque.Designer.cs">
+      <DependentUpon>201810222120210_AddSaidaEstoque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810222142084_AddAlertaDisponibilidade.cs" />
+    <Compile Include="Migrations\201810222142084_AddAlertaDisponibilidade.Designer.cs">
+      <DependentUpon>201810222142084_AddAlertaDisponibilidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.cs" />
+    <Compile Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.Designer.cs">
+      <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,6 +125,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810131902395_AddPrecoVendaEncomenda.resx">
       <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810222120210_AddSaidaEstoque.resx">
+      <DependentUpon>201810222120210_AddSaidaEstoque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810222142084_AddAlertaDisponibilidade.resx">
+      <DependentUpon>201810222142084_AddAlertaDisponibilidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.resx">
+      <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

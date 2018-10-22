@@ -127,7 +127,29 @@ namespace SisconfFrontEnd.Controllers
         //GET: Reports/Disponibilidade
         public ActionResult Disponibilidade()
         {
-            return View();
+            List<Insumo> insumos = db.Insumos.Include(i => i.Unidade).ToList();
+            List<Aquisicao> aquisicoes = db.Aquisicoes.Include(aq => aq.Insumo).ToList();
+            List<SaidaDeEstoque> saidas = db.SaidaDeEstoque.Include(s => s.Insumo).ToList();
+            List<AlertaDeDisponibilidade> alertas = db.Alertas
+                .Include(a => a.Email).ToList();
+
+            Estoque e = new Estoque();
+            e.IncluirAquisicao(aquisicoes.ToArray());
+            e.IncluirSaidas(saidas.ToArray());
+
+            List<double> quantidades = new List<double>();
+            foreach(Insumo i in insumos)
+            {
+                quantidades.Add(e.ObterQuantidade(i));
+            }
+
+            DisponibilidadeViewModel dvm = new DisponibilidadeViewModel()
+            {
+                insumos = insumos,
+                quantidades = quantidades
+            };
+
+            return View(dvm);
         }
     }
 }

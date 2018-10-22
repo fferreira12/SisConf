@@ -13,6 +13,7 @@ namespace SisConf.Model
         public string NomeDoEstoque { get; set; }
         private Dictionary<Insumo, double> estoque = null;
         private List<Aquisicao> aquisicoes = null;
+        private List<SaidaDeEstoque> saidas = null;
 
 
         public Estoque(string nomeDoEstoque = null)
@@ -20,6 +21,7 @@ namespace SisConf.Model
             NomeDoEstoque = nomeDoEstoque == null ? "" : nomeDoEstoque;
             estoque = new Dictionary<Insumo, double>();
             aquisicoes = new List<Aquisicao>();
+            saidas = new List<SaidaDeEstoque>();
         }
 
         public Dictionary<Insumo, double> GetEstoque()
@@ -44,6 +46,23 @@ namespace SisConf.Model
                     estoque[aquisicao.Insumo] = aquisicao.Quantidade;
                 }
             }
+            foreach (SaidaDeEstoque saida in saidas)
+            {
+                if (estoque.ContainsKey(saida.Insumo))
+                {
+                    estoque[saida.Insumo] -= saida.Quantidade;
+                }
+                else
+                {
+                    estoque[saida.Insumo] = saida.Quantidade;
+                }
+
+                //TODO: melhorar validação para os casos de saídas maiores que entradas
+                if(estoque[saida.Insumo] < 0)
+                {
+                    estoque[saida.Insumo] = 0;
+                }
+            }
         }
 
         public void IncluirAquisicao(params Aquisicao[] aquisicoes)
@@ -54,9 +73,22 @@ namespace SisConf.Model
             }
         }
 
+        public void IncluirSaidas(params SaidaDeEstoque[] saidas)
+        {
+            foreach (SaidaDeEstoque saida in saidas)
+            {
+                this.saidas.Add(saida);
+            }
+        }
+
         public void RemoverAquisicao(Aquisicao aquisicao)
         {
             aquisicoes.Remove(aquisicao);
+        }
+
+        public void RemoverSaida(SaidaDeEstoque saida)
+        {
+            saidas.Remove(saida);
         }
 
         public double ObterQuantidade(Insumo insumo)
@@ -78,7 +110,11 @@ namespace SisConf.Model
             {
                 valorTotal += aquisicao.Quantidade * aquisicao.PrecoUnitario;
             }
-            return valorTotal;
+            foreach (SaidaDeEstoque saida in saidas)
+            {
+                valorTotal -= saida.Quantidade * CalcularPrecoMedio(saida.Insumo);
+            }
+            return valorTotal > 0 ? valorTotal : 0;
         }
 
         public double CalcularPrecoMedio(Insumo insumo = null)
