@@ -143,13 +143,81 @@ namespace SisconfFrontEnd.Controllers
                 quantidades.Add(e.ObterQuantidade(i));
             }
 
+            List<bool> possuiAlerta = new List<bool>();
+            foreach (Insumo insumo in insumos)
+            {
+                if(insumo.Alerta == null)
+                {
+                    possuiAlerta.Add(false);
+                } else
+                {
+                    possuiAlerta.Add(true);
+                }
+            }
+
             DisponibilidadeViewModel dvm = new DisponibilidadeViewModel()
             {
                 insumos = insumos,
-                quantidades = quantidades
+                quantidades = quantidades,
+                possuiAlerta = possuiAlerta
             };
 
             return View(dvm);
         }
+
+        [HttpPost]
+        public ActionResult Disponibilidade(DisponibilidadeViewModel dvm)
+        {
+            DisponibilidadePostViewModel dpvm = GetDVMFromRequest(Request);
+
+            List<AlertaDeDisponibilidade> alertasExistentes = db.Alertas.Include(a => a.Email).ToList();
+
+            //foreach (var alert in alertasExistentes)
+            //    if (!dpvm.alertas.Any(a => a.id == fruit.id)) user.Fruits.Remove(fruit);
+
+            //foreach (var fruit in post_fruits)
+            //{
+            //    if (existing_fruits.Any(e => e.id == fruit.id)) continue;
+            //    var entity = context.FirstOrDefault(e => e.id == fruit.id);
+            //    if (entity != null) user.Fruits.Add(entity);
+            //}
+
+            return Disponibilidade();
+        }
+
+        private DisponibilidadePostViewModel GetDVMFromRequest(HttpRequestBase request)
+        {
+            DisponibilidadePostViewModel dpvm = new DisponibilidadePostViewModel();
+            dpvm.alertas = new Dictionary<int, AlertaDeDisponibilidade>();
+
+            foreach (var item in request.Form.AllKeys)
+            {
+                string type = item.Split(new Char[] { '-' })[0];
+                int id = Convert.ToInt32(item.Split(new Char[] { '-' })[1]);
+                string value = request.Form[item];
+
+                if(value == null || value == "")
+                {
+                    continue;
+                }
+
+                if (!dpvm.alertas.ContainsKey(id))
+                {
+                    dpvm.alertas.Add(id, new AlertaDeDisponibilidade());
+                }
+
+                if(type == "email")
+                {
+                    dpvm.alertas[id].Email = new Email(value);
+                } else if (type == "qtd")
+                {
+                    double val = 0;
+                    double.TryParse(value, System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("pt-br"), out val);
+                    dpvm.alertas[id].QuantidadeMinima = val;
+                }
+            }
+            return dpvm;
+        }
+
     }
 }

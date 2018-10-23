@@ -54,5 +54,11 @@ namespace SisConfTestes.Mocking
         {
             mocker.AlterarPrecosDeVendaDasEncomendas();
         }
+
+        [TestMethod]
+        public void TestIncluirAlertas()
+        {
+            mocker.IncluirAlertas();
+        }
     }
 }

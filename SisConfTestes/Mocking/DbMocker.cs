@@ -334,7 +334,27 @@ namespace SisConfTestes.Mocking
             _db.SaveChanges();
         }
 
+        public void IncluirAlertas()
+        {
+            List<Insumo> insumos = _db.Insumos.Include(i => i.Alerta).ToList();
 
+            foreach (Insumo insumo in insumos)
+            {
+                bool addAlerta = random.NextDouble() < 0.5;
+
+                if(addAlerta)
+                {
+                    Email e = new Email("fulano" + random.Next(10).ToString() + "@gmail.com");
+                    AlertaDeDisponibilidade a = new AlertaDeDisponibilidade()
+                    {
+                        Email = e,
+                        QuantidadeMinima = random.NextDouble() * 500
+                    };
+                    insumo.Alerta = a;
+                }
+            }
+            _db.SaveChanges();
+        }
     }
 }
 

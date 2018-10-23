@@ -10,7 +10,7 @@ namespace SisconfFrontEnd.Models
     {
         public List<Insumo> insumos;
         public List<double> quantidades;
-
+        public List<bool> possuiAlerta;
 
     }
 }

@@ -6,24 +6,40 @@
 
 <h2>Disponibilidade</h2>
 
-<table class="table">
-    <tr>
-        <th>Insumo</th>
-        <th>Quantidade Disponível</th>
-        <th>Unidade</th>
-        <th>Alerta?</th>
-        <th>Quantidade Mínima</th>
-        <th>Email para Alerta</th>
-    </tr>
-    @for (int i = 0; i < Model.insumos.Count; i++)
-    {
-    <tr>
-        <td>@Model.insumos[i].Nome</td>
-        <td>@Model.quantidades[i]</td>
-        <td>@Model.insumos[i].Unidade.Sigla</td>
-        <td><input type="checkbox" class="form-check-input"></td>
-        <td></td>
-        <td></td>
-    </tr>
-    }
-</table>
+<form action="/Reports/Disponibilidade" method="post">
+    <table class="table">
+        <tr>
+            <th>Insumo</th>
+            <th>Quantidade Disponível</th>
+            <th>Unidade</th>
+            <th>Alerta?</th>
+            <th>Quantidade Mínima</th>
+            <th>Email para Alerta</th>
+        </tr>
+        @for (int i = 0; i < Model.insumos.Count; i++)
+        {
+            <tr>
+                <td>@Model.insumos[i].Nome</td>
+                <td>@Model.quantidades[i]</td>
+                <td>@Model.insumos[i].Unidade.Sigla</td>
+                <td><input name="ativo-@Model.insumos[i].Id" type="checkbox" class="form-check-input" checked="@(Model.possuiAlerta[i])"></td>
+
+                @if (Model.insumos[i].Alerta == null)
+                {
+                    <td>@Html.TextBox("qtd-" + Model.insumos[i].Id, null, new { @class = "form-control" })</td>
+                    <td>@Html.TextBox("email-" + Model.insumos[i].Id, null, new { @class = "form-control" })</td>
+                }
+                else
+                {
+                    @*<td>@(Model.insumos[i].Alerta.QuantidadeMinima.ToString())</td>*@
+                    <td>@Html.TextBox("qtd-" + Model.insumos[i].Id, Model.insumos[i].Alerta.QuantidadeMinima, new { @class = "form-control" })</td>
+                    <td>@Html.TextBox("email-" + Model.insumos[i].Id, Model.insumos[i].Alerta.Email.EmailCompleto(), new { @class = "form-control" })</td>
+
+                }
+
+            </tr>
+        }
+    </table>
+    <button type="submit" class="btn btn-success">Salvar</button>
+</form>
+

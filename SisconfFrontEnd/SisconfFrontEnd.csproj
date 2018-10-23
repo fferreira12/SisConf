@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="Models\CreateInsumoViewModel.cs" />
     <Compile Include="Models\CustosViewModel.cs" />
+    <Compile Include="Models\DisponibilidadePostViewModel.cs" />
     <Compile Include="Models\DisponibilidadeViewModel.cs" />
     <Compile Include="Models\EncomendaViewModel.cs" />
     <Compile Include="Models\LucrosViewModel.cs" />
