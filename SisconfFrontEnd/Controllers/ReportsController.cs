@@ -47,6 +47,18 @@ namespace SisconfFrontEnd.Controllers
             cvm.produtos = produtos;
             cvm.custos = custos;
 
+            //dados para javascript
+            string[] nomesProdutos = produtos.Select(p => p.Nome).ToArray();
+            double[] custosProdutos = custos.ToArray();
+
+            var dadosGraficos = new
+            {
+                nomesProdutos = nomesProdutos,
+                custosProdutos = custosProdutos
+            };
+
+            ViewData["dadosGraficos"] = dadosGraficos;
+
             return View(cvm);
         }
 
