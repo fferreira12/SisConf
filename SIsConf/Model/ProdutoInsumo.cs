@@ -13,5 +13,6 @@ namespace SisConf.Model
         public Produto Produto { get; set; }
         public Insumo Insumo { get; set; }
         public double Quantidade { get; set; }
+        public UnidadeMedida Unidade { get; set; }
     }
 }

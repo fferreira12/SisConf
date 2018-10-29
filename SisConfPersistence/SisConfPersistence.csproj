@@ -90,6 +90,14 @@
     <Compile Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.Designer.cs">
       <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.cs" />
+    <Compile Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.Designer.cs">
+      <DependentUpon>201810281239241_AddRelationEstoqueAquisicaoSaida.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.cs" />
+    <Compile Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.Designer.cs">
+      <DependentUpon>201810281249294_AddUnidadeMedidaProdutoInsumo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +142,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.resx">
       <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.resx">
+      <DependentUpon>201810281239241_AddRelationEstoqueAquisicaoSaida.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.resx">
+      <DependentUpon>201810281249294_AddUnidadeMedidaProdutoInsumo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

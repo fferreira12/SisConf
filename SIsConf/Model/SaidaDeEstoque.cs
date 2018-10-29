@@ -12,6 +12,7 @@ namespace SisConf.Model
         public int Id { get; set; }
         public Insumo Insumo { get; set; }
         public double Quantidade { get; set; }
+        public Estoque Estoque { get; set; }
         public DateTime Data { get; set; }
 
     }

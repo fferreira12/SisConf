@@ -6,16 +6,37 @@
 
 <h2>Relatórios</h2>
 <ul>
-    <li>
-        @Html.ActionLink("Custos de Produtos", "Custos", "Reports")
-    </li>
-    <li>
-        @Html.ActionLink("Preços para Venda", "PrecoVenda", "Reports", new { id = 10 }, null)
-    </li>
-    <li>
-        @Html.ActionLink("Lucros e Prejuízos", "Lucros", "Reports")
-    </li>
-    <li>
-        @Html.ActionLink("Disponibilidade em de Insumos", "Disponibilidade", "Reports")
-    </li>
+    <div class="d-flex p-2">
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Custos</h5>
+                <p class="card-text">Veja os custos de produção dos itens cadastrados</p>
+                <a href="/Reports/Custos" class="btn btn-primary mt-auto">Ir para Custos</a>
+            </div>
+        </div>
+
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Preços de Venda</h5>
+                <p class="card-text">Calcule os preços de venda com base na mergem de lucro</p>
+                <a href="/Reports/PrecoVenda" class="btn btn-primary mt-auto">Ir para Preços</a>
+            </div>
+        </div>
+
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Lucros e Prejuízos</h5>
+                <p class="card-text">Analise os lucros e prejuízos obtidos com as encomendas</p>
+                <a href="/Reports/Lucros" class="btn btn-primary mt-auto">Ir para Lucros</a>
+            </div>
+        </div>
+
+        <div class="card mr-2" style="width: 18rem;">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">Disponibilidade</h5>
+                <p class="card-text">Gerencie a disponibilidade de insumos e seja avisado quando o estoque estiver baixo</p>
+                <a href="/Reports/Disponibilidade" class="btn btn-primary mt-auto">Ir para Disponibilidade</a>
+            </div>
+        </div>
+    </div>
 </ul>
