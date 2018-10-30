@@ -156,6 +156,7 @@
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ProdutosController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SaidaDeEstoqueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -277,6 +278,11 @@
     <Content Include="Views\Reports\Lucros.cshtml" />
     <Content Include="Views\Reports\Disponibilidade.cshtml" />
     <Content Include="Views\Reports\PrecoVenda.cshtml" />
+    <Content Include="Views\SaidaDeEstoque\Create.cshtml" />
+    <Content Include="Views\SaidaDeEstoque\Delete.cshtml" />
+    <Content Include="Views\SaidaDeEstoque\Details.cshtml" />
+    <Content Include="Views\SaidaDeEstoque\Edit.cshtml" />
+    <Content Include="Views\SaidaDeEstoque\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
