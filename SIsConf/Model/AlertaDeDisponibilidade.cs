@@ -11,9 +11,11 @@ namespace SisConf.Model
     {
 
         public int Id { get; set; }
-        //public Insumo Insumo { get; set; }
+        
+        public virtual Insumo Insumo { get; set; }
         public double QuantidadeMinima { get; set; }
         public Email Email { get; set; }
+        public bool Ativado { get; set; }
 
     }
 }

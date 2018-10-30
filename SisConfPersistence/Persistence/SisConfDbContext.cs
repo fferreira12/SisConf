@@ -28,7 +28,7 @@ namespace SisConfPersistence.Persistence
         public DbSet<SaidaDeEstoque> SaidaDeEstoque { get; set; }
         public DbSet<AlertaDeDisponibilidade> Alertas { get; set; }
 
-        public SisConfDbContext() : base("name=Home")
+        public SisConfDbContext() : base("name=CollegeLab")
         {
 
         }
@@ -47,6 +47,9 @@ namespace SisConfPersistence.Persistence
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             //modelBuilder.HasDefaultSchema("SisConf");
 
+            modelBuilder.Entity<Insumo>()
+                .HasOptional(i => i.Alerta) // Mark Address property optional in Student entity
+                .WithRequired(ad => ad.Insumo);
 
             base.OnModelCreating(modelBuilder);
         }

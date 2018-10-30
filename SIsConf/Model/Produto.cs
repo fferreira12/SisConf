@@ -45,14 +45,14 @@ namespace SisConf.Model
         {
             if(estoque == null && Estoque == null)
             {
-                return 0;
+                return 0.0;
             }
             else if (Estoque == null || (estoque != null && Estoque != estoque))
             {
                 Estoque = estoque;
             }
 
-            double valorTotal = 0;
+            double valorTotal = 0.0;
             //foreach (var insumo in insumos)
             //{
             //    valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);

@@ -280,13 +280,16 @@ namespace SisConfTestes.Mocking
 
         public void CriarAquisicoes()
         {
-            for(int i = 0; i < nomesInsumos.Length; i++)
+            Insumo[] insumos = _db.Insumos.ToArray();
+
+            for (int i = 0; i < insumos.Count(); i++)
             {
                 int quantidadeDeAquisicoes = random.Next(5, 11);
 
                 for(int j = 0; j < quantidadeDeAquisicoes; j++)
                 {
-                    Aquisicao aquis = new Aquisicao(GetRandomFromArray(insumos.ToArray()), random.NextDouble() * 150 + 50, random.NextDouble() * 90 + 10);
+                    Aquisicao aquis = new Aquisicao(insumos[i], random.NextDouble() * 150.0 + 50.0, random.NextDouble() * 90.0 + 10.0);
+                    
                     _db.Aquisicoes.Add(aquis);
                 }
             }
@@ -313,7 +316,7 @@ namespace SisConfTestes.Mocking
 
             for (int i = 0; i < encomendas.Count; i++)
             {
-                double custoEncomenda = 0;
+                double custoEncomenda = 0.0;
                 foreach (EncomendaProduto ep in encomendas[i].EncomendaProduto)
                 {
                     custoEncomenda += ep.Produto.CalcularCustoDoProduto(estoque);

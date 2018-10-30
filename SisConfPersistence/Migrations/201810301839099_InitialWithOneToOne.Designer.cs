@@ -7,13 +7,13 @@ namespace SisConfPersistence.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddPrecoVendaEncomenda : IMigrationMetadata
+    public sealed partial class InitialWithOneToOne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPrecoVendaEncomenda));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialWithOneToOne));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810131902395_AddPrecoVendaEncomenda"; }
+            get { return "201810301839099_InitialWithOneToOne"; }
         }
         
         string IMigrationMetadata.Source

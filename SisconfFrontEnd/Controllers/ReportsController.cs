@@ -158,10 +158,11 @@ namespace SisconfFrontEnd.Controllers
             List<bool> possuiAlerta = new List<bool>();
             foreach (Insumo insumo in insumos)
             {
-                if(insumo.Alerta == null)
+                if(insumo.Alerta == null || !insumo.Alerta.Ativado)
                 {
                     possuiAlerta.Add(false);
-                } else
+                }
+                else
                 {
                     possuiAlerta.Add(true);
                 }
@@ -184,15 +185,42 @@ namespace SisconfFrontEnd.Controllers
 
             List<AlertaDeDisponibilidade> alertasExistentes = db.Alertas.Include(a => a.Email).ToList();
 
-            //foreach (var alert in alertasExistentes)
-            //    if (!dpvm.alertas.Any(a => a.id == fruit.id)) user.Fruits.Remove(fruit);
+            foreach (var alertaExistente in alertasExistentes) { 
+                if (!dpvm.alertas.Any(a => a.Key == alertaExistente.Id))
+                {
+                    foreach(Insumo insumo in db.Insumos.Where(ins => ins.Alerta.Id == alertaExistente.Id))
+                    {
+                        insumo.Alerta = null;
+                    }
+                    db.Alertas.Remove(alertaExistente);
+                }
+            }
+            
+            foreach (var alertaNovo in dpvm.alertas)
+            {
+                if (alertasExistentes.Any(a => a.Id == alertaNovo.Key))
+                {
+                    AlertaDeDisponibilidade alertaExistente = db.Alertas.Find(alertaNovo.Key);
+                    alertaExistente.Ativado = alertaNovo.Value.Ativado;
+                    alertaExistente.Email = alertaNovo.Value.Email;
+                    alertaExistente.QuantidadeMinima = alertaNovo.Value.QuantidadeMinima;
+                }
+                else
+                {
+                    AlertaDeDisponibilidade alertaASerInserido = new AlertaDeDisponibilidade()
+                    {
+                        Ativado = alertaNovo.Value.Ativado,
+                        Email = alertaNovo.Value.Email,
+                        Id = alertaNovo.Key,
+                        QuantidadeMinima = alertaNovo.Value.QuantidadeMinima
+                    };
 
-            //foreach (var fruit in post_fruits)
-            //{
-            //    if (existing_fruits.Any(e => e.id == fruit.id)) continue;
-            //    var entity = context.FirstOrDefault(e => e.id == fruit.id);
-            //    if (entity != null) user.Fruits.Add(entity);
-            //}
+                    db.Alertas.Add(alertaASerInserido);
+                }
+                
+            }
+
+            db.SaveChanges();
 
             return Disponibilidade();
         }
@@ -221,15 +249,36 @@ namespace SisconfFrontEnd.Controllers
                 if(type == "email")
                 {
                     dpvm.alertas[id].Email = new Email(value);
-                } else if (type == "qtd")
+                }
+                else if (type == "qtd")
                 {
                     double val = 0;
                     double.TryParse(value, System.Globalization.NumberStyles.Float, new System.Globalization.CultureInfo("pt-br"), out val);
                     dpvm.alertas[id].QuantidadeMinima = val;
                 }
+                else if (type == "ativo")
+                {
+                    var ativo = request.Form[item];
+                    dpvm.alertas[id].Ativado = request.Form[item] == "on";
+                    ativo = "";
+                }
             }
             return dpvm;
         }
+
+        //private List<AlertaDeDisponibilidade> AlertasParaIncluir(List<AlertaDeDisponibilidade> alertasAtuais)
+        //{
+        //    List<AlertaDeDisponibilidade> alertasParaIncluir = new List<AlertaDeDisponibilidade>();
+        //    foreach (AlertaDeDisponibilidade alertaAtual in alertasAtuais)
+        //    {
+        //        if(!alertasExistentes.Any(alerta => alerta.Id))
+        //    }
+        //}
+
+        //private List<AlertaDeDisponibilidade> AlertasParaAlterar(List<AlertaDeDisponibilidade> alertasAtuais, List<AlertaDeDisponibilidade> alertasExistentes)
+        //{
+
+        //}
 
     }
 }

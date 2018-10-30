@@ -50,53 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201809222047470_InitialCreate.cs" />
-    <Compile Include="Migrations\201809222047470_InitialCreate.Designer.cs">
-      <DependentUpon>201809222047470_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809222111199_AddClienteRelations.cs" />
-    <Compile Include="Migrations\201809222111199_AddClienteRelations.Designer.cs">
-      <DependentUpon>201809222111199_AddClienteRelations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809222158110_AddEncomendaProduto.cs" />
-    <Compile Include="Migrations\201809222158110_AddEncomendaProduto.Designer.cs">
-      <DependentUpon>201809222158110_AddEncomendaProduto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.cs" />
-    <Compile Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.Designer.cs">
-      <DependentUpon>201809222200199_AddEncomendaProdutoToProduto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809271624512_AddRelacaoProdutoInsumo.cs" />
-    <Compile Include="Migrations\201809271624512_AddRelacaoProdutoInsumo.Designer.cs">
-      <DependentUpon>201809271624512_AddRelacaoProdutoInsumo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810011527482_work-migration.cs" />
-    <Compile Include="Migrations\201810011527482_work-migration.Designer.cs">
-      <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810131902395_AddPrecoVendaEncomenda.cs" />
-    <Compile Include="Migrations\201810131902395_AddPrecoVendaEncomenda.Designer.cs">
-      <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810222120210_AddSaidaEstoque.cs" />
-    <Compile Include="Migrations\201810222120210_AddSaidaEstoque.Designer.cs">
-      <DependentUpon>201810222120210_AddSaidaEstoque.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810222142084_AddAlertaDisponibilidade.cs" />
-    <Compile Include="Migrations\201810222142084_AddAlertaDisponibilidade.Designer.cs">
-      <DependentUpon>201810222142084_AddAlertaDisponibilidade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.cs" />
-    <Compile Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.Designer.cs">
-      <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.cs" />
-    <Compile Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.Designer.cs">
-      <DependentUpon>201810281239241_AddRelationEstoqueAquisicaoSaida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.cs" />
-    <Compile Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.Designer.cs">
-      <DependentUpon>201810281249294_AddUnidadeMedidaProdutoInsumo.cs</DependentUpon>
+    <Compile Include="Migrations\201810301839099_InitialWithOneToOne.cs" />
+    <Compile Include="Migrations\201810301839099_InitialWithOneToOne.Designer.cs">
+      <DependentUpon>201810301839099_InitialWithOneToOne.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Persistence\SisConfDbContext.cs" />
@@ -113,41 +69,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809222047470_InitialCreate.resx">
-      <DependentUpon>201809222047470_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809222111199_AddClienteRelations.resx">
-      <DependentUpon>201809222111199_AddClienteRelations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809222158110_AddEncomendaProduto.resx">
-      <DependentUpon>201809222158110_AddEncomendaProduto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809222200199_AddEncomendaProdutoToProduto.resx">
-      <DependentUpon>201809222200199_AddEncomendaProdutoToProduto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809271624512_AddRelacaoProdutoInsumo.resx">
-      <DependentUpon>201809271624512_AddRelacaoProdutoInsumo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810011527482_work-migration.resx">
-      <DependentUpon>201810011527482_work-migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810131902395_AddPrecoVendaEncomenda.resx">
-      <DependentUpon>201810131902395_AddPrecoVendaEncomenda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810222120210_AddSaidaEstoque.resx">
-      <DependentUpon>201810222120210_AddSaidaEstoque.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810222142084_AddAlertaDisponibilidade.resx">
-      <DependentUpon>201810222142084_AddAlertaDisponibilidade.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810222149127_AlteraAlertaDisponibilidade.resx">
-      <DependentUpon>201810222149127_AlteraAlertaDisponibilidade.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810281239241_AddRelationEstoqueAquisicaoSaida.resx">
-      <DependentUpon>201810281239241_AddRelationEstoqueAquisicaoSaida.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810281249294_AddUnidadeMedidaProdutoInsumo.resx">
-      <DependentUpon>201810281249294_AddUnidadeMedidaProdutoInsumo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810301839099_InitialWithOneToOne.resx">
+      <DependentUpon>201810301839099_InitialWithOneToOne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
