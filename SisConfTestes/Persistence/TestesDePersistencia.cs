@@ -10,7 +10,7 @@ namespace SisConfTestes.Persistence
     [TestClass]
     public class TestesDePersistencia
     {
-        string connString = "name=Home";
+        string connString = "name=Avell";
 
         [TestMethod]
         public void TestObterContexto()

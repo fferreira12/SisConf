@@ -351,7 +351,8 @@ namespace SisConfTestes.Mocking
                     AlertaDeDisponibilidade a = new AlertaDeDisponibilidade()
                     {
                         Email = e,
-                        QuantidadeMinima = random.NextDouble() * 500
+                        QuantidadeMinima = random.NextDouble() * 500,
+                        Ativado = true
                     };
                     insumo.Alerta = a;
                 }

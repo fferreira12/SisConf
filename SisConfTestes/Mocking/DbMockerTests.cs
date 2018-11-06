@@ -13,10 +13,12 @@ namespace SisConfTestes.Mocking
         public void TestInicializarBD()
         {
             TestCriarInsumos();
-            TestCriarAquisicoes();
             TestCriarProdutos();
+            TestCriarAquisicoes();
             TestCriarClientes();
             TestCriarEncomendas();
+            TestAlterarPrecoEncomendas();
+            TestIncluirAlertas();
         }
 
         [TestMethod]
