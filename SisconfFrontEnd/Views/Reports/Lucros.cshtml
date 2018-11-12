@@ -1,0 +1,73 @@
+﻿@model SisconfFrontEnd.Models.LucrosViewModel
+
+@{
+    ViewBag.Title = "Lucros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lucros</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Cliente
+        </th>
+        <th>
+            Data de Recebimento
+        </th>
+        <th>
+            Data e Hora de Entrega
+        </th>
+        <th>
+            Observações
+        </th>
+        <th>
+            Preço de Venda
+        </th>
+        <th>
+            Custo
+        </th>
+        <th>
+            Lucro / Prejuízo
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.encomendas.Count; i++)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.encomendas[i].Cliente.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.encomendas[i].DataRecebimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.encomendas[i].DataHoraEntrega)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.encomendas[i].Observacoes)
+        </td>
+        <td>
+            @string.Format("{0:C2}", Model.encomendas[i].PrecoVenda)
+        </td>
+        <td>
+            @string.Format("{0:C2}", Model.custos[i])
+        </td>
+        <td>
+            @string.Format("{0:C2}", (Model.encomendas[i].PrecoVenda - Model.custos[i]))
+        </td>
+    </tr>
+    }
+
+    <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>@(string.Format("{0:C2}", Model.totalPrecoVenda))</td>
+        <td>@(string.Format("{0:C2}", Model.totalCustos))</td>
+        <td>@(string.Format("{0:C2}", Model.totalLucroPrejuizo))</td>
+    </tr>
+
+</table>

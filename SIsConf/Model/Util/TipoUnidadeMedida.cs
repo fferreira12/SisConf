@@ -11,6 +11,7 @@ namespace SisConf.Model
         MASSA,
         VOLUME,
         TEMPO,
-        COMPRIMENTO
+        COMPRIMENTO,
+        UNIDADE
     }
 }

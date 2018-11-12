@@ -12,6 +12,7 @@ namespace SisConf.Model
         public int Id { get; set; }
         public Insumo Insumo { get; set; }
         public double Quantidade { get; set; }
+        public Estoque Estoque { get; set; }
         public double PrecoUnitario { get; set; }
         public DateTime Data { get; set; }
         public double PrecoTotal
@@ -29,6 +30,15 @@ namespace SisConf.Model
             Insumo = insumo;
             Quantidade = quantidade;
             PrecoUnitario = precoUnitario;
+            Data = DateTime.Now;
+        }
+
+        public Aquisicao(Insumo insumo, double quantidade, double precoUnitario, DateTime data)
+        {
+            Insumo = insumo;
+            Quantidade = quantidade;
+            PrecoUnitario = precoUnitario;
+            Data = data;
         }
 
     }

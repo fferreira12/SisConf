@@ -15,6 +15,16 @@ namespace SisConf.Model
         private Dictionary<Insumo, double> insumos = null;
         private Estoque Estoque = null;
 
+        public ICollection<EncomendaProduto> EncomendaProduto { get; set; }
+        public ICollection<ProdutoInsumo> ProdutoInsumo { get; set; }
+
+        public Produto()
+        {
+            Nome = null;
+            insumos = new Dictionary<Insumo, double>();
+
+        }
+
         public Produto(string nome = null)
         {
             Nome = nome;
@@ -35,17 +45,21 @@ namespace SisConf.Model
         {
             if(estoque == null && Estoque == null)
             {
-                return 0;
+                return 0.0;
             }
             else if (Estoque == null || (estoque != null && Estoque != estoque))
             {
                 Estoque = estoque;
             }
 
-            double valorTotal = 0;
-            foreach (var insumo in insumos)
+            double valorTotal = 0.0;
+            //foreach (var insumo in insumos)
+            //{
+            //    valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);
+            //}
+            foreach (ProdutoInsumo produtoInsumo in ProdutoInsumo)
             {
-                valorTotal += insumo.Value * Estoque.CalcularPrecoMedio(insumo.Key);
+                valorTotal += produtoInsumo.Quantidade * Estoque.CalcularPrecoMedio(produtoInsumo.Insumo);
             }
             return valorTotal;
         }

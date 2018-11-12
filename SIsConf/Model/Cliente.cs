@@ -18,63 +18,63 @@ namespace SisConf.Model
         public Sexo Sexo { get; set; }
         public TipoCliente TipoCliente { get; set; }
 
-        private List<Endereco> enderecos;
-        private List<Telefone> telefones;
-        private List<Email> emails;
+        public ICollection<Endereco> Enderecos { get; set; }
+        public ICollection<Telefone> Telefones { get; set; }
+        public ICollection<Email> Emails { get; set; }
 
         public List<Endereco> ObterEnderecos()
         {
-            return new List<Endereco>(enderecos);
+            return new List<Endereco>(Enderecos);
         }
 
         public List<Telefone> ObterTelefones()
         {
-            return new List<Telefone>(telefones);
+            return new List<Telefone>(Telefones);
         }
 
         public List<Email> ObterEmails()
         {
-            return new List<Email>(emails);
+            return new List<Email>(Emails);
         }
 
         public Cliente()
         {
-            enderecos = new List<Endereco>();
-            telefones = new List<Telefone>();
-            emails = new List<Email>();
+            Enderecos = new List<Endereco>();
+            Telefones = new List<Telefone>();
+            Emails = new List<Email>();
         }
 
         public void Adicionar(Endereco endereco)
         {
-            enderecos.Add(endereco);
+            Enderecos.Add(endereco);
         }
 
         public void Remover(Endereco endereco)
         {
-            enderecos.Remove(endereco);
+            Enderecos.Remove(endereco);
         }
 
         public void Adicionar(Telefone telefone)
         {
-            telefones.Add(telefone);
+            Telefones.Add(telefone);
         }
 
         public void Remover(Telefone telefone)
         {
-            telefones.Remove(telefone);
+            Telefones.Remove(telefone);
         }
 
         public void Adicionar(Email email)
         {
             if(Email.ValidarEmail(email.EmailCompleto()))
             {
-                emails.Add(email);
+                Emails.Add(email);
             }
         }
 
         public void Remover(Email email)
         {
-            emails.Remove(email);
+            Emails.Remove(email);
         }
     }
 }

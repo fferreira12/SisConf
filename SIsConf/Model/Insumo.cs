@@ -27,6 +27,7 @@ namespace SisConf.Model
         public UnidadeMedida Unidade { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public AlertaDeDisponibilidade Alerta { get; set; }
 
         public Insumo() { }
 
