@@ -28,7 +28,7 @@ namespace SisConfPersistence.Persistence
         public DbSet<SaidaDeEstoque> SaidaDeEstoque { get; set; }
         public DbSet<AlertaDeDisponibilidade> Alertas { get; set; }
 
-        public SisConfDbContext() : base("name=Avell")
+        public SisConfDbContext() : base("name=DefaultConnection")
         {
 
         }

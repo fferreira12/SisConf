@@ -10,7 +10,7 @@ namespace SisConfTestes.Persistence
     [TestClass]
     public class TestesDePersistencia
     {
-        string connString = "name=Avell";
+        string connString = "name=DefaultConnection";
 
         [TestMethod]
         public void TestObterContexto()
